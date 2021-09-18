@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { dbService } from 'fbase';
+import { v4 as uuidv4 } from 'uuid';
+import { dbService, storageService } from 'fbase';
 import { addDoc, collection, getDocs, onSnapshot, orderBy, query } from 'firebase/firestore'
+import { ref, uploadString, getDownloadURL } from 'firebase/storage';
+import Ntweet from 'components/Ntweet';
 
 const Home = ({userObj}) => {
 	const [ntweet, setNtweet] = useState("");
 	const [ntweets, setNtweets] = useState([]);
+	const [photo, setPhoto] = useState("");
 	
 	useEffect(() => {
 		onSnapshot(query(collection(dbService, "ntweets"),orderBy("createdAt", "desc")), (snapshot) => {
@@ -18,12 +22,22 @@ const Home = ({userObj}) => {
 
 	const onSubmit = async (event) => {
 		event.preventDefault();
+		let photoUrl = "";
+		
+		if(photo != ""){
+			const photoRef = ref(storageService, `${userObj.uid}/${uuidv4()}`);
+			const response = await uploadString(photoRef, photo, "data_url");
+			photoUrl = await getDownloadURL(response.ref);
+		}
+				
 		const docRef = await addDoc(collection(dbService, "ntweets"), {
 			text: ntweet,
 			createdAt: Date.now(),
 			creatorId: userObj.uid,
+			photoUrl,
 		});
 		setNtweet("");
+		setPhoto("");
 	};
 	
 	const onChange = (event) => {
@@ -33,6 +47,21 @@ const Home = ({userObj}) => {
 		setNtweet(value);
 	};
 	
+	const onFileChange = (event) => {
+		const {
+			target: { files },
+		} = event;
+		const theFile = files[0];
+		const reader = new FileReader();
+		reader.onloadend = (finishedEvent) => {
+			const {currentTarget: { result }} = finishedEvent;
+			setPhoto(result);
+		}
+		reader.readAsDataURL(theFile);
+	}
+	
+	const onClearClick = () => setPhoto("");
+			
 	return (
 	<div>
 		<form onSubmit={onSubmit}>
@@ -43,15 +72,19 @@ const Home = ({userObj}) => {
 				value={ntweet}
 				onChange={onChange}
 				/>
+			<input type="file" accept="image/*" onChange={onFileChange} />
 			<input type="submit" value="tweet" />
+			{photo && (
+				<div>
+					<img src={photo} width="50px" height="50px" />
+					<button onClick={onClearClick}>Clear</button>
+				</div>
+			)
+			}
 		</form>
 		<div>
 			{ntweets.map((ntweet) => (
-				<div key={ntweet.id}>
-					<h4>{ntweet.text}</h4>
-					<h6>{ntweet.createdAt}</h6>
-					<h6>{ntweet.creatorId}</h6>
-				</div>
+				<Ntweet key={ntweet.id} ntweetObj={ntweet} isOwner={ntweet.creatorId===userObj.uid} />
 			))}
 		</div>
 	</div>
