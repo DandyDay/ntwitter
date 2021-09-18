@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { dbService, storageService } from 'fbase';
-import { addDoc, collection, getDocs, onSnapshot, orderBy, query } from 'firebase/firestore'
+import { addDoc, collection, onSnapshot, orderBy, query } from 'firebase/firestore'
 import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 import Ntweet from 'components/Ntweet';
 
@@ -24,7 +24,7 @@ const Home = ({userObj}) => {
 		event.preventDefault();
 		let photoUrl = "";
 		
-		if(photo != ""){
+		if(photo !== ""){
 			const photoRef = ref(storageService, `${userObj.uid}/${uuidv4()}`);
 			const response = await uploadString(photoRef, photo, "data_url");
 			photoUrl = await getDownloadURL(response.ref);
