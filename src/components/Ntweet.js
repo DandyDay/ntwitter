@@ -11,7 +11,7 @@ const Ntweet = ({ntweetObj, isOwner}) => {
 		if(ok){
 			//delete
 			deleteDoc(doc(dbService, `ntweets/${ntweetObj.id}`));
-			if(ntweetObj.photoUrl != ""){
+			if(ntweetObj.photoUrl !== ""){
 				deleteObject(ref(storageService, ntweetObj.photoUrl));
 			}
 		}
@@ -31,7 +31,7 @@ const Ntweet = ({ntweetObj, isOwner}) => {
 	}
 	
 	return (
-	<div>
+	<div className="ntweet">
 		{editing ? (
 				<>
 				<form onSubmit={onSubmit}>
