@@ -24,9 +24,9 @@ const Home = ({userObj}) => {
 	
 			
 	return (
-	<div className="ntweets_container">
+	<div>
 		<NtweetFactory userObj={userObj} />
-		<div>
+		<div className="ntweets_container">
 			{ntweets.map((ntweet) => (
 				<Ntweet key={ntweet.id} ntweetObj={ntweet} isOwner={ntweet.creatorId===userObj.uid} />
 			))}

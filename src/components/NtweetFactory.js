@@ -5,7 +5,6 @@ import { addDoc, collection } from 'firebase/firestore'
 import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 
 
-
 const NtweetFactory = ({ userObj }) => {
 	
 	const [ntweet, setNtweet] = useState("");
@@ -55,16 +54,20 @@ const NtweetFactory = ({ userObj }) => {
 	const onClearClick = () => setPhoto("");
 	
 	return (
-		<form onSubmit={onSubmit}>
-			<input 
-				type="text"
-				placeholder="What's on your mind?"
-				maxLength={120}
-				value={ntweet}
-				onChange={onChange}
+		<form className="factoryContainer" onSubmit={onSubmit}>
+			<div className="factoryInputs">
+				<input 
+					type="text"
+					placeholder="What's on your mind?"
+					maxLength={120}
+					value={ntweet}
+					onChange={onChange}
+					className="ntweetText"
 				/>
+				<input className="submitBtn" type="submit" value="→" />
+			</div>
 			<input type="file" accept="image/*" onChange={onFileChange} />
-			<input type="submit" value="tweet" />
+			
 			{photo && (
 				<div>
 					<img src={photo} alt="uploadedPhoto" width="50px" height="50px" />
