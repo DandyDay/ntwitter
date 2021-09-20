@@ -33,16 +33,17 @@ const Profile =  ({ userObj, refreshUser }) => {
 	
 	return (
 		<>
-		<form onSubmit={onSubmit}>
+		<form className="modifyProfile" onSubmit={onSubmit}>
 			<input 
+				className="editProfile"
 				type="text" 
 				placeholder="Display Name"
 				onChange={onChange}
 				value={newDisplayName}
 			/>
-			<input type="submit" value="Update Profile" />
+			<input className="updateProfile" type="submit" value="Update Profile" />
 		</form>
-		<button onClick={onLogOutClick}>Log Out</button>
+		<button className="logOut" onClick={onLogOutClick}>Log Out</button>
 		
 		</>
 	);

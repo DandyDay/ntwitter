@@ -13,7 +13,7 @@ body {
 	background-color: black;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-	font-size: 18px;
+	font-size: 13pt;
 	color: white;
 	display: flex;
 	justify-content: center;
@@ -27,7 +27,7 @@ form {
 button {
 	background-color: white;
 	color: black;
-	
+	cursor: pointer;
 }
 
 ul {
@@ -40,6 +40,10 @@ a {
 	text-decoration: none;
 }
 
+nav {
+	margin-bottom: 20px;
+}
+
 .profileText{
 	margin-top: 10px;
 	font-size: 12px;
@@ -49,23 +53,58 @@ a {
 .factoryContainer{
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+	max-width: 320px;
 }
 
 .factoryInputs{
 	display: flex;
 	align-items: center;
+	width: 100%;
+}
+
+.uploadPhotoContainer{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.photoUploadBtn{
+	color: #04aaff;
+	cursor: pointer;
+	margin-top: 15px;
+}
+
+.photoClear{
+	color: #04aaff;
+	cursor: pointer;
+	margin-top: 10px;
+}
+
+.ntweetUploadPhoto{
+	width: 100%;
+	margin-top: 10px;
+}
+
+.photoUploader{
+	opacity: 0;
+	height: 0;
 }
 
 .submitBtn{
-	
     background-color: #04aaff;
     height: 40px;
     width: 40px;
     padding: 10px 0;
     text-align: center;
-    border-radius: 20px;
     color: #fff;
     box-sizing: border-box;
+	cursor: pointer;
+	border: none;
+	font-size: 14pt;
+	font-weight: bold;
 }
 
 .ntweetText{
@@ -73,10 +112,9 @@ a {
 	width: 100%;
 	height: 40px;
 	padding: 10px;
-	border-radius: 15px;
+	padding-left: 15px;
 	border: 1px solid #04aaff;
-	border-right: none;
-	background-color: black;
+	background-color: #DEE1E6;
 }
 
 .ntweets_container{
@@ -86,12 +124,116 @@ a {
 }
 
 .ntweet{
-	background-color: white;
+	position: relative;
+	background-color: #DEE1E6;
 	max-width: 320px;
 	width: 100%;
 	padding: 10px;
 	color: black;
-	margin-top: 20px;
+	margin-top: 15px;
 	border-radius: 10px;
-	
+	display: flex;
+	flex-direction: column;
+}
+
+.ntweetPhoto{
+	margin: 5px;
+	width: 95%;
+	height: auto;
+}
+
+.deleteBtn{
+	border: none;
+	background-color: transparent;
+}
+
+.editBtn{
+	border: none;
+	background-color: transparent;
+}
+
+.ntweetBtns{
+	position: absolute;
+	right: 5px;
+}
+
+.modifyProfile{
+	display: flex;
+	flex-direction: column;
+}
+
+.editProfile{
+	max-width: 320px;
+	width: 100%;
+	height: 40px;
+	padding: 10px;
+	border-radius: 15px;
+	border: 1px solid #04aaff;
+	background-color: black;
+	color: white;
+	font-size: 13pt;
+}
+
+.updateProfile{
+	background-color: #04aaff;
+	height: 40px;
+	margin-top: 15px;
+	width: 100%;
+	border:none;
+	border-radius: 20px;
+	font-size: 14pt;
+	color: white;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.logOut{
+	background-color: tomato;
+	height: 40px;
+	margin-top: 15px;
+	width: 100%;	
+	border:none;
+	border-radius: 20px;
+	font-size: 14pt;
+	color: white;
+	font-weight: bold;
+}
+
+.editNtweetForm{
+	display: flex;
+	flex-direction: column;
+}
+
+.editText{
+	width: 100%;
+	height: 40px;
+	border: #DDDDDD 1px solid;
+	border-radius: 10px;
+	padding-left: 10px;
+	font-size: 12pt;
+}
+
+.editUpdate{
+	background-color: #04aaff;
+	height: 40px;
+	margin-top: 15px;
+	width: 100%;
+	border:none;
+	border-radius: 20px;
+	font-size: 14pt;
+	color: white;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.editCancel{
+	background-color: tomato;
+	height: 40px;
+	margin-top: 10px;
+	width: 100%;	
+	border:none;
+	border-radius: 20px;
+	font-size: 14pt;
+	color: white;
+	font-weight: bold;
 }

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { dbService, storageService } from 'fbase';
 import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { deleteObject, ref } from 'firebase/storage';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const Ntweet = ({ntweetObj, isOwner}) => {
 	const [editing, setEditing] = useState(false);
@@ -34,30 +36,35 @@ const Ntweet = ({ntweetObj, isOwner}) => {
 	<div className="ntweet">
 		{editing ? (
 				<>
-				<form onSubmit={onSubmit}>
+				<form className="editNtweetForm" onSubmit={onSubmit}>
 					<input
+						className="editText"
 						value={newNtweet}
 						type="text"
 						placeholder="Edit your ntweet"
 						onChange={onChange}
 						required />
-					<input type="submit" value="Update Ntweet" />
+					<input className="editUpdate" type="submit" value="Update Ntweet" /> 
 				</form>
-				<button onClick={toggleEditing}>Cancel</button>
+				<button className="editCancel" onClick={toggleEditing}>Cancel</button>
 				</>
 			) : (
 				<>
-					<h4>{ntweetObj.text}</h4>
+					<span>{ntweetObj.text}</span>
 				{ntweetObj.photoUrl && (
-				 <img src={ntweetObj.photoUrl} alt={ntweetObj.id} width="100px" height="100px" />
+				 <img src={ntweetObj.photoUrl} alt={ntweetObj.id} className="ntweetPhoto" />
 				 )}
-					<h6>{ntweetObj.createdAt}</h6>
-					<h6>{ntweetObj.creatorId}</h6>
+					<span>{ntweetObj.createdAt}</span>
+					<span>{ntweetObj.creatorId}</span>
 					{isOwner && (
-					<>
-						<button onClick={onDeleteClick}>Delete Ntweet</button>
-						<button onClick={toggleEditing}>Edit Ntweet</button>
-					</>
+					<div className="ntweetBtns">
+						<button className="deleteBtn" onClick={onDeleteClick}>
+							<FontAwesomeIcon icon={faTrash}/>
+						</button>
+						<button className="editBtn" onClick={toggleEditing}>
+							<FontAwesomeIcon icon={faEdit}/>
+						</button>
+					</div>
 					)}
 				</>
 			)

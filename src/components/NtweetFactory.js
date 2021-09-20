@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { storageService, dbService } from 'fbase';
 import { addDoc, collection } from 'firebase/firestore'
@@ -6,7 +6,7 @@ import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 
 
 const NtweetFactory = ({ userObj }) => {
-	
+	const ref = useRef();
 	const [ntweet, setNtweet] = useState("");
 	const [photo, setPhoto] = useState("");
 	
@@ -51,7 +51,10 @@ const NtweetFactory = ({ userObj }) => {
 		reader.readAsDataURL(theFile);
 	}
 	
-	const onClearClick = () => setPhoto("");
+	const onClearClick = () => {
+		setPhoto("");
+		ref.current.value = "";
+	}
 	
 	return (
 		<form className="factoryContainer" onSubmit={onSubmit}>
@@ -66,12 +69,15 @@ const NtweetFactory = ({ userObj }) => {
 				/>
 				<input className="submitBtn" type="submit" value="→" />
 			</div>
-			<input type="file" accept="image/*" onChange={onFileChange} />
+			<label className="photoUploadBtn" for="input-file">
+  				Upload Photo
+			</label>
+			<input id="input-file" className="photoUploader" type="file" ref={ref} accept="image/*" onChange={onFileChange} />
 			
 			{photo && (
-				<div>
-					<img src={photo} alt="uploadedPhoto" width="50px" height="50px" />
-					<button onClick={onClearClick}>Clear</button>
+				<div className="uploadPhotoContainer">
+					<img src={photo} alt="uploadedPhoto" className="ntweetUploadPhoto" />
+					<span className="photoClear" onClick={onClearClick}>Clear</span>
 				</div>
 			)
 			}
