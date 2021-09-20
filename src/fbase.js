@@ -17,3 +17,5 @@ initializeApp(firebaseConfig);
 export const authService = getAuth();
 export const dbService = getFirestore();
 export const storageService = getStorage();
+
+//Being v9 in javascript, firebase code architecture changed.
