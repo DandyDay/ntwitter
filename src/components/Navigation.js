@@ -7,7 +7,10 @@ import {
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 
-const Navigation = ({ userObj }) => <nav>
+const Navigation = ({ userObj }) => <nav style={{
+		marginTop: "100px",
+	}}
+>
 	<ul>
 		<li>
 			<Link 

@@ -1,9 +1,6 @@
 @import "https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css";
 
 
-html, body {
-	height: 100%;
-}
 
 * {
 	box-sizing: border-box;
