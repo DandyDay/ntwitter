@@ -137,6 +137,10 @@ nav {
 	flex-direction: column;
 }
 
+.ntweetContent{
+	width: 100%;
+}
+
 .ntweetPhoto{
 	margin: 5px;
 	max-height: 200px;
@@ -144,6 +148,17 @@ nav {
 	width: auto;
 	height: auto;
 	object-fit: scale-down;
+}
+
+.createAt{
+	margin-top: 10px;
+	color: gray;
+	font-size: 11pt;
+}
+
+.creatorName{
+	margin-top: 5px;
+	font-size: 11pt;
 }
 
 .deleteBtn{
@@ -159,6 +174,7 @@ nav {
 .ntweetBtns{
 	position: absolute;
 	right: 5px;
+	bottom: 5px;
 }
 
 .modifyProfile{

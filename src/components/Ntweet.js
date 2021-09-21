@@ -32,6 +32,11 @@ const Ntweet = ({ntweetObj, isOwner}) => {
 		setNewNtweet(value);
 	}
 	
+	const createdAtToString = (createdAt) => {
+		var dateVar = new Date(createdAt);
+		return (dateVar.getFullYear() + ". " + (dateVar.getMonth()+1) + ". " + dateVar.getDate() + ". " + dateVar.getHours() + ":" + (dateVar.getMinutes()<10 ? "0" + dateVar.getMinutes() : dateVar.getMinutes()));
+	}
+	
 	return (
 	<div className="ntweet">
 		{editing ? (
@@ -50,12 +55,12 @@ const Ntweet = ({ntweetObj, isOwner}) => {
 				</>
 			) : (
 				<>
-					<span>{ntweetObj.text}</span>
+					<span className="ntweetContent">{ntweetObj.text}</span>
 				{ntweetObj.photoUrl && (
 				 <img src={ntweetObj.photoUrl} alt={ntweetObj.id} className="ntweetPhoto" />
 				 )}
-					<span>{ntweetObj.createdAt}</span>
-					<span>{ntweetObj.creatorId}</span>
+					<span className="createAt">{createdAtToString(ntweetObj.createdAt)}</span>
+					<span className="creatorName">by {ntweetObj.creatorName}</span>
 					{isOwner && (
 					<div className="ntweetBtns">
 						<button className="deleteBtn" onClick={onDeleteClick}>

@@ -19,11 +19,12 @@ const NtweetFactory = ({ userObj }) => {
 			const response = await uploadString(photoRef, photo, "data_url");
 			photoUrl = await getDownloadURL(response.ref);
 		}
-				
+			
 		await addDoc(collection(dbService, "ntweets"), {
 			text: ntweet,
 			createdAt: Date.now(),
 			creatorId: userObj.uid,
+			creatorName: userObj.displayName,
 			photoUrl,
 		});
 		
