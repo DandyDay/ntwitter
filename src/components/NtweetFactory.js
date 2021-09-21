@@ -6,7 +6,7 @@ import { ref, uploadString, getDownloadURL } from 'firebase/storage';
 
 
 const NtweetFactory = ({ userObj }) => {
-	const ref = useRef();
+	const refPhoto = useRef();
 	const [ntweet, setNtweet] = useState("");
 	const [photo, setPhoto] = useState("");
 	
@@ -48,12 +48,16 @@ const NtweetFactory = ({ userObj }) => {
 			const {currentTarget: { result }} = finishedEvent;
 			setPhoto(result);
 		}
-		reader.readAsDataURL(theFile);
+		try{
+			reader.readAsDataURL(theFile);
+		} catch (e) {
+			
+		}
 	}
 	
 	const onClearClick = () => {
 		setPhoto("");
-		ref.current.value = "";
+		refPhoto.current.value = "";
 	}
 	
 	return (
@@ -72,7 +76,7 @@ const NtweetFactory = ({ userObj }) => {
 			<label className="photoUploadBtn" for="input-file">
   				Upload Photo
 			</label>
-			<input id="input-file" className="photoUploader" type="file" ref={ref} accept="image/*" onChange={onFileChange} />
+			<input id="input-file" className="photoUploader" type="file" ref={refPhoto} accept="image/*" onChange={onFileChange} />
 			
 			{photo && (
 				<div className="uploadPhotoContainer">

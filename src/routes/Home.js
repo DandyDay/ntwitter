@@ -17,11 +17,7 @@ const Home = ({userObj}) => {
 			setNtweets(ntweetArray);
 		});
 		return () => getData();
-	}, []);
-	
-	
-	
-	
+	}, []);	
 			
 	return (
 	<div>

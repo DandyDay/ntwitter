@@ -84,7 +84,9 @@ nav {
 }
 
 .ntweetUploadPhoto{
-	width: 100%;
+	max-height: 200px;
+	height: auto;
+	width: auto;
 	margin-top: 10px;
 }
 
@@ -96,7 +98,7 @@ nav {
 .submitBtn{
     background-color: #04aaff;
     height: 40px;
-    width: 40px;
+    width: 45px;
     padding: 10px 0;
     text-align: center;
     color: #fff;
@@ -105,6 +107,7 @@ nav {
 	border: none;
 	font-size: 14pt;
 	font-weight: bold;
+	border-radius: 0px 10px 10px 0px;
 }
 
 .ntweetText{
@@ -115,6 +118,7 @@ nav {
 	padding-left: 15px;
 	border: 1px solid #04aaff;
 	background-color: #DEE1E6;
+	border-radius: 10px 0px 0px 10px;
 }
 
 .ntweets_container{
@@ -138,8 +142,11 @@ nav {
 
 .ntweetPhoto{
 	margin: 5px;
-	width: 95%;
+	max-height: 200px;
+	max-width: 95%;
+	width: auto;
 	height: auto;
+	object-fit: scale-down;
 }
 
 .deleteBtn{

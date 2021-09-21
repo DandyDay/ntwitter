@@ -7,9 +7,7 @@ import { updateProfile } from 'firebase/auth';
 const Profile =  ({ userObj, refreshUser }) => {
 	const history = useHistory();
 	const [newDisplayName, setNewDisplayName] = useState(userObj?.displayName?.length ? userObj.displayName : "");
-	
 	const onLogOutClick = () => {
-		
 		signOut(authService);
 		history.push('/');
 	};
@@ -44,7 +42,6 @@ const Profile =  ({ userObj, refreshUser }) => {
 			<input className="updateProfile" type="submit" value="Update Profile" />
 		</form>
 		<button className="logOut" onClick={onLogOutClick}>Log Out</button>
-		
 		</>
 	);
 };

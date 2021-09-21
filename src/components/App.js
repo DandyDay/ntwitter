@@ -10,6 +10,11 @@ function App() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [userObj, setUserObj] = useState(null);
 	
+	const refreshUser = () => {
+		setUserObj({...authService.currentUser});
+		setUserObj(authService.currentUser);
+	}
+	
 	useEffect(() => {
 		onAuthStateChanged(authService,(user)=>{
 			if(user){
@@ -20,12 +25,7 @@ function App() {
 			}
 			setInit(true);
 		})
-	}, [])
-	
-	const refreshUser = () => {
-		setUserObj({...authService.currentUser});
-		setUserObj(authService.currentUser);
-	}
+	}, [])	
 	
 	return (
 		<>

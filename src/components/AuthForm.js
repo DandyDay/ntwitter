@@ -3,13 +3,15 @@ import { authService } from 'fbase';
 import {
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
+	updateProfile,
 } from 'firebase/auth';
 
 const AuthForm = () => {
 	
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [newAccount, setNewAccount] = useState(true);
+	const [name, setName] = useState("");
+	const [newAccount, setNewAccount] = useState(false);
 	const [error, setError] = useState("");
 	const onChange = (event) => {
 		const {target: {name, value}} = event;
@@ -17,6 +19,8 @@ const AuthForm = () => {
 			setEmail(value);
 		} else if (name === "password"){
 			setPassword(value);
+		} else if (name === "name"){
+			setName(value);
 		}
 	}
 	const onSubmit = async (event) => {
@@ -24,7 +28,12 @@ const AuthForm = () => {
 		try {
 			if(newAccount){
 				// create account
-				await createUserWithEmailAndPassword(authService, email, password);
+				await createUserWithEmailAndPassword(authService, email, password).then((userCredential) => {
+					const user = userCredential.user;
+					updateProfile(user, {
+						displayName: name,
+					});
+				});
 			} else {
 				// log in
 				await signInWithEmailAndPassword(authService, email, password);
@@ -58,6 +67,18 @@ const AuthForm = () => {
 				onChange={onChange}
 				className="loginText"
 			/>
+			{
+				newAccount && (
+					<input 
+						name="name"
+						type="text"
+						placeholder="Name"
+						required
+						onChange={onChange}
+						className="loginText"
+					/>
+				)
+			}
 			<input className="loginText loginBtn" type="submit" value={newAccount ? "Create Account" : "Log In" }/>
 			<span className="errorMessage">{error}</span>
 		</form>
