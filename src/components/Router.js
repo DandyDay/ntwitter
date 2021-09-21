@@ -1,8 +1,9 @@
 import React from 'react';
 import {HashRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
-import Auth from 'routes/Auth'
-import Home from 'routes/Home'
-import Profile from 'routes/Profile'
+import Auth from 'routes/Auth';
+import Home from 'routes/Home';
+import Profile from 'routes/Profile';
+import Myntweets from 'routes/Myntweets';
 import Navigation from 'components/Navigation';
 
 const AppRouter = ({ isLoggedIn, userObj, refreshUser }) => {
@@ -17,6 +18,9 @@ const AppRouter = ({ isLoggedIn, userObj, refreshUser }) => {
 					</Route>
 					<Route exact path="/profile">
 						<Profile userObj={userObj} refreshUser={refreshUser} />
+					</Route>
+					<Route exact path="/myntweets">
+						<Myntweets userObj={userObj} />
 					</Route>
 					<Redirect from="*" to="/" />
 				</>

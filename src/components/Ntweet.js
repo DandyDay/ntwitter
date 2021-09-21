@@ -34,7 +34,7 @@ const Ntweet = ({ntweetObj, isOwner}) => {
 	
 	const createdAtToString = (createdAt) => {
 		var dateVar = new Date(createdAt);
-		return (dateVar.getFullYear() + ". " + (dateVar.getMonth()+1) + ". " + dateVar.getDate() + ". " + dateVar.getHours() + ":" + (dateVar.getMinutes()<10 ? "0" + dateVar.getMinutes() : dateVar.getMinutes()));
+		return (dateVar.getFullYear() + ". " + (dateVar.getMonth()+1) + ". " + dateVar.getDate() + ". " + (dateVar.getHours()<10 ? "0" + dateVar.getHours() : dateVar.getHours()) + ":" + (dateVar.getMinutes()<10 ? "0" + dateVar.getMinutes() : dateVar.getMinutes()));
 	}
 	
 	return (

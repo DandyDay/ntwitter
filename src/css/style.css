@@ -28,9 +28,8 @@ button {
 }
 
 ul {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
 }
 
 a {
