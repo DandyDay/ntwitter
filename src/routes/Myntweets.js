@@ -24,7 +24,6 @@ const Myntweets = ({userObj}) => {
 	<div style={{
 				marginBottom: "100px",
 			}}>
-		<NtweetFactory userObj={userObj} />
 		<div className="ntweets_container">
 			{ntweets.map((ntweet) => {
 				if(userObj.uid===ntweet.creatorId){
